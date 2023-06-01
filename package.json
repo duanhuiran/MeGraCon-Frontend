@@ -1,0 +1,62 @@
+{
+  "name": "usecase1",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@material-ui/styles": "^4.11.5",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.3",
+    "@overlapmedia/imagemapper": "^1.0.13",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.7.7",
+    "buffer": "^6.0.3",
+    "capture-video-frame": "^1.0.0",
+    "jpeg-js": "^0.4.4",
+    "konva": "^9.2.0",
+    "pako": "^2.1.0",
+    "react": "^18.2.0",
+    "react-3d-viewer": "^1.0.12",
+    "react-audio-player": "^0.17.0",
+    "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-images-uploading": "^3.1.7",
+    "react-konva": "^18.2.9",
+    "react-pdf": "^7.1.1",
+    "react-player": "^2.12.0",
+    "react-router": "^6.12.0",
+    "react-router-dom": "^6.12.0",
+    "react-scripts": "5.0.1",
+    "react-sketch-canvas": "^6.2.0",
+    "react-syntax-highlighter": "^15.5.0",
+    "use-image": "^1.1.0",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
