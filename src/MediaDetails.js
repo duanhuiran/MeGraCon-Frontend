@@ -69,6 +69,7 @@ const MediaDetails = ({ triggerSnackbar }) => {
     // intra-document relations
     const [intraDocRels, setIntraDocRels] = useState([])
     const [entityPropertyPairs, setEntityPropertyPairs] = useState([])
+    const [audioTrackLoading, setAudioTrackLoading] = useState(false)
     const [audioTrackUrl, setAudioTrackUrl] = useState("")
     const [originVideoUrl, setOriginVideoUrl] = useState("")
 
@@ -608,6 +609,24 @@ const MediaDetails = ({ triggerSnackbar }) => {
         setRefreshTrigger(!refreshTrigger)
     }
 
+    const extractAudioTrack = async () => {
+        setAudioTrackLoading(true)
+        const requestBody = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify([BACKEND_URL + "/" + objectId])
+        };
+
+        let response = await fetch(MEGRA_CON_URL + "/audio-tracks/from/videos", requestBody)
+            .catch(() => triggerSnackbar(MEGRA_CON_ERR, "error"));
+        if (response && response.ok) {
+            setAudioTrackLoading(false)
+            setRefreshTrigger(!refreshTrigger)
+        }
+    }
+
 
     const details = (
         <>
@@ -631,6 +650,16 @@ const MediaDetails = ({ triggerSnackbar }) => {
                             Add segment
                         </Button>
                     }
+                    {["video/webm"].includes(filetype) && !objectId.includes('c') && !audioTrackUrl && (
+                        <Button
+                            variant="contained"
+                            color="success"
+                            startIcon={audioTrackLoading ? <CircularProgress size={24}/> : <AddIcon size={24}/>}
+                            onClick={extractAudioTrack}
+                        >
+                            Extract Audio
+                        </Button>
+                    )}
                 </Stack>
                 <TableContainer component={Paper} sx={{ width: '60vw' }}>
                     <Table>
@@ -684,7 +713,7 @@ const MediaDetails = ({ triggerSnackbar }) => {
                                 <TableRow>
                                     <TableCell>Caption</TableCell>
                                     <TableCell>
-                                        <Stack  spacing={2} direction="row" justifyContent="left" alignItems="left">
+                                        <Stack  spacing={2} direction="row" justifyContent="left" alignItems="center">
                                             <ThemeProvider theme={createTheme({
                                                 palette: {
                                                     text: {
